@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main</title>
+  <style>
+    * {
+      margin: 0;
+    }
+
+    body {
+      background-color: #333;
+    }
+
+    nav {
+      background-color: black;
+      padding: 10px;
+      text-align: right;
+    }
+
+    span {
+      margin: 0 10px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .container {
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .bar1,
+    .bar2,
+    .bar3 {
+      width: 25px;
+      height: 3px;
+      background-color: #333;
+      margin: 3px 0;
+      transition: 0.4s;
+    }
+
+    .change .bar1 {
+      transform: translate(0, 6px) rotate(-45deg);
+    }
+
+    .change .bar2 {
+      opacity: 0;
+    }
+
+    .change .bar3 {
+      transform: translate(0, -6px) rotate(45deg);
+    }
+
+    #menu {
+      margin-right: 10%;
+      background-color: rgb(23, 23, 23);
+      color: white;
+      border: 1px solid gray;
+      position: absolute;
+      display: none;
+      outline: none; /* Remove default outline on focus */
+    }
+
+    .bu {
+      padding: 10px 90px;
+    }
+
+    #mainn {
+      margin: 10px 10%;
+      background-color: rgba(255, 255, 255, 0.514);
+      border-radius: 5px;
+      padding: 10px;
+    }
+  </style>
+  <script>
+    function funmen(x) {
+      x.classList.toggle("change");
+      funmen2();
+    }
+
+    function funmen2() {
+      const menu = document.getElementById("menu");
+      document.getElementById()
+      menu.style.display === "block" ? (menu.style.display = "none") : (menu.style.display = "block");
+      // Set focus on menu and blur background elements on show
+      if (menu.style.display === "block") {
+        menu.focus();
+        // Add class to blur background elements (optional)
+        document.body.classList.add("blur");
+      } else {
+        // Remove blur class on hide (optional)
+        document.body.classList.remove("blur");
+      }
+    }
+
+    // Handle clicks outside the menu to blur it
+    document.addEventListener("click", function (event) {
+      const menu = document.getElementById("menu");
+      if (!menu.contains(event.target) && menu.style.display === "block") {
+        menu.style.display = "none";
+      }
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <span style="float:left;">DP-Securer</span>
+    <span>Home</span>
+    <span class="container" onclick="funmen(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </span>
+  </nav>
+  <div id="menu">
+    <div class="bu">show Passwords</div>
+  </div>
+
+  <div id="mainn">
+    <fieldset>
+      <legend>Save Passwords</legend>
+      <input id="Platform" placeholder="Platform name"><br>
+      <input id="Username" placeholder="Username"><br>
+      <input id="p_pass" type="Password" placeholder="Password"><br>
+      <button>Submit</button>
+    </fieldset>
+  </div>
+</body>
+</html>

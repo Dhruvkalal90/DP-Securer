@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <script src="pro.js"></script>
+    <style>
+        *{margin:0;}
+        span{
+            margin:0 10px;
+            font-weight: bold;
+            color: aliceblue;
+        }
+        nav{
+            background-color: rgb(70,135,255);
+            padding: 10px;
+            text-align:right;
+        }
+        .pass{
+            border:1px solid black;
+            border-radius: 8px;
+            
+            margin: 10px 20%;
+            background-color: rgba(126, 171, 255, 0.507);
+            padding:10px;
+        }
+        a{text-decoration: none;}
+        body{background-color: #e2f1ff;}
+        
+    </style>
+</head>
+<body>
+    
+    <nav>
+        <span style="float:left;">DP-Securer</span>
+        <a href="index.html"><span>Home</span></a>
+    </nav>
+    <br>
+    <div class="pass">
+        
+            <h2>Set password</h2><br>
+            <input id="pass1" placeholder="Enter password"><br>
+            <input type="password" id="pass2" placeholder="Confirm password"><br>
+            <button onclick="setpass()">Submit</button>
+            <div>
+                <span id="target" style="color:red"></span>
+            </div>
+        
+    </div><br>
+    <div class="pass">
+    
+        <h2>Reset password</h2><br>
+        <button onclick="resetpass()">Reset password</button>
+    
+</div>
+</body>
+</html>

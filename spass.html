@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <script src="pro2.js"></script>
+    <style>
+        *{margin:0}
+        body{
+            background-color: #333;
+        }
+        nav{
+            background-color: black;
+            padding: 10px;
+            text-align:right;
+        }
+        span{
+            margin:0 10px;
+            font-weight: bold;
+            color: white;
+        }
+
+
+        .container {
+        display: inline-block;
+        cursor: pointer;
+        }
+        .bar1, .bar2, .bar3 {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 3px 0;
+            transition: 0.4s;
+        }
+        .change .bar1 {
+            transform: translate(0, 6px) rotate(-45deg);
+        }
+        .change .bar2 {opacity: 0;}
+        .change .bar3 {
+            transform: translate(0, -6px) rotate(45deg);
+        }
+        #menu{
+            margin-right: 10%;
+            background-color: rgb(23, 23, 23);
+            color:white;
+            border:1px solid gray;
+            position:absolute;
+            display: none;
+            width:90%;
+            height: 100%;
+        }
+        .bu{
+            text-align: center;
+            padding: 10px 10px;
+            font-size:20px;
+            font-weight:bold;
+            background-color:rgba(255, 255, 255, 0.316);
+        }
+        .bu:hover{
+            text-align: center;
+            padding: 10px 10px;
+            font-size:20px;
+            font-weight:bold;
+            background-color:rgba(255, 255, 255, 0.162);
+        }
+
+        .mainn{
+            margin:10px 10%;
+            background-color: rgba(255, 255, 255, 0.514);
+            border-radius:5px;
+            padding: 10px;
+        }
+        a{
+            text-decoration: none;
+        }
+        table {
+                border-collapse: collapse;
+                
+                width:100%
+            }
+            th, td {
+                border: 1px solid black;
+                padding: 8px;
+                text-align: left;
+                font-size:20px
+                
+            }
+            td{
+                background-color: rgb(56, 56, 56);
+                color:white;
+                border:1px solid white;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            .copy-button, .edit-button, .delete-button {
+                padding: 5px 10px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+            .copy-button:hover {
+                background-color: #4CAF50;
+                color: white;
+            }
+            .edit-button:hover {
+                background-color: #FFA500;
+                color: white;
+            }
+            .delete-button:hover {
+                background-color: #f44336;
+                color: white;
+            }
+            .pass{
+            border:1px solid black;
+            border-radius: 8px;
+            
+            margin: 10px 10%;
+            background-color: rgba(254, 254, 254, 0.443);
+            padding:10px;}
+    </style>
+    <script>
+        function funmen(x) {
+            x.classList.toggle("change");
+            funmen2();
+        }
+        function funmen2(){
+            y=document.getElementById("menu");
+                    if(y.style.display==="block")
+                    {y.style.display="none"}
+                    else
+                    {y.style.display="block";}
+        }
+        function spass()
+        {window.location.href="main.html";}
+    </script>
+</head>
+<body>
+    <nav>
+        <span style="float:left;">DP-Securer</span>
+        <a href="index.html"><span>Home</span></a>
+        <span class="container" onclick="funmen(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </span>
+    </nav>
+    <div id="menu">
+        <div class="bu" onclick="spass()">Save password</div>
+    </div>
+    <div class="pass">
+        <h2>Saved Passwords</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Platform</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th >Actions</th>
+                </tr>
+            </thead>
+            <tbody id="userDataBody">
+                <!-- User data will be inserted here -->
+            </tbody>
+        </table>
+        
+        <script>
+            // Retrieve user data from localStorage
+            var users = JSON.parse(localStorage.getItem("users")) || [];
+        
+            // Get the table body element
+            var tableBody = document.getElementById("userDataBody");
+        
+            // Loop through each user and create a table row
+            users.forEach(function(user, index) {
+                var row = tableBody.insertRow();
+                var platformCell = row.insertCell(0);
+                var usernameCell = row.insertCell(1);
+                var passwordCell = row.insertCell(2);
+                var actionsCell = row.insertCell(3);
+        
+                platformCell.textContent = user.platform;
+                usernameCell.textContent = user.username;
+                passwordCell.textContent = user.password;
+        
+                // Create a copy button
+                var copyButton = document.createElement("button");
+                copyButton.textContent = "Copy";
+                copyButton.className = "copy-button";
+                copyButton.onclick = function() {
+                    copyToClipboard(user.password);
+                };
+                actionsCell.appendChild(copyButton);
+        
+                // Create an edit button
+                var editButton = document.createElement("button");
+                editButton.textContent = "Edit";
+                editButton.className = "edit-button";
+                editButton.onclick = function() {
+                    editUser(index);
+                };
+                actionsCell.appendChild(editButton);
+        
+                // Create a delete button
+                var deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.className = "delete-button";
+                deleteButton.onclick = function() {
+                    deleteUser(index);
+                };
+                actionsCell.appendChild(deleteButton);
+            });
+        
+            // Function to copy password to clipboard
+            function copyToClipboard(password) {
+                var tempInput = document.createElement("input");
+                tempInput.value = password;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand("copy");
+                document.body.removeChild(tempInput);
+                alert("Password copied to clipboard: " + password);
+            }
+        
+            // Function to edit user data
+            function editUser(index) {
+                var user = users[index];
+                document.getElementById("Platform").value = user.platform;
+                document.getElementById("Username").value = user.username;
+                document.getElementById("p_pass").value = user.password;
+        
+                // Remove the user from the array
+                users.splice(index, 1);
+        
+                // Update localStorage
+                localStorage.setItem("users", JSON.stringify(users));
+            }
+        
+            // Function to delete user data
+            function deleteUser(index) {
+                if (confirm("Are you sure you want to delete this user?")) {
+                    // Remove the user from the array
+                    users.splice(index, 1);
+        
+                    // Update localStorage
+                    localStorage.setItem("users", JSON.stringify(users));
+        
+                    // Reload the page to reflect changes
+                    location.reload();
+                }
+            }
+        </script>
+    </div>
+    
+</body>
+</html>

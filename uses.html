@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+    <style>
+        *{margin:0}
+        body{background-color: rgb(133, 176, 255);}
+        span{
+            margin:0 10px;
+            font-weight: bold;
+            color: aliceblue;
+        }
+        nav{
+            background-color: rgb(70,135,255);
+            padding: 10px;
+            text-align:right;
+        }
+
+        .pass{
+            border:1px solid black;
+            border-radius: 8px;
+            text-align: center;
+            margin: 10px 10%;
+            background-color: rgba(254, 254, 254, 0.443);
+            padding:10px;
+        }
+        .he{
+            background-color: #e2f1ff;
+            margin: 0;
+        }
+        button{
+            padding:10px 40px;
+            display:inline-block;
+            border:1px solid #ccc;
+            border-radius:4px;
+            box-sizing: border-box;
+            background-color: #316FF6;
+            color: white;
+            
+        }
+        .container {
+        display: inline-block;
+        cursor: pointer;
+        }
+        .bar1, .bar2, .bar3 {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 3px 0;
+            transition: 0.4s;
+        }
+        .change .bar1 {
+            transform: translate(0, 6px) rotate(-45deg);
+        }
+        .change .bar2 {opacity: 0;}
+        .change .bar3 {
+            transform: translate(0, -6px) rotate(45deg);
+        }
+        #menu{
+            margin-right: 10%;
+            background-color: #4687ff;
+            color:white;
+            border:1px solid black;
+            position:absolute;
+            display: none;
+            width:90%;
+            height: 100%;
+        }
+        .bu{
+            text-align: center;
+            padding: 10px 10px;
+            font-size:20px;
+            font-weight:bold;
+            background-color: #c2dbf3;
+            color:black;
+            border:0.1px solid black;
+        }
+        .bu:hover{
+            text-align: center;
+            padding: 10px 10px;
+            font-size:20px;
+            font-weight:bold;
+            background-color:rgba(255, 255, 255, 0.162);
+            color:white;
+            border:none;
+        }
+        .guide{
+            font-size: 20px;
+            text-align: left;
+        }
+    </style>
+    <script src="pro.js"></script>
+</head>
+<body>
+    <nav>
+        <span style="float:left;">DP-Securer</span>
+        
+        <span class="container" onclick="funmen(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </span>
+    </nav>
+    <div id="menu">
+        <div class="bu" onclick="home()">Home</div>
+        <script>
+            function home()
+            {window.location.href="index.html"}
+        </script>
+        <div class="bu" onclick="au()">About us</div>
+        <script> function au()
+            {window.location.href="au.html"}</script>
+    </div>
+    <div class="pass">
+        <br>
+        <h1>DP-Securer</h1><br>
+        Wanna save passwords but security issues? Don't worry DP-Securer hai na!<br><br><br>
+        <div class="guide">
+            Follow the Instructions to start securing the security!
+            <br><br>
+            <strong>Step-1: Set password</strong><br>
+            <li>It is required to set password to save & to see the saved password so that no one can access your passwords other than you.</li><br>
+            <strong>Step-2: Saving passwords</strong><br>
+            <li>There are 3 inputs             
+            <ul>
+            <li>Platform</li>
+            <li>Username</li>
+            <li>Password</li>
+        </ul>
+            All of them is required, you have to fill each one and click submit button to save the details.
+            </li><br>
+            <strong>Step-3: Show passwords</strong><br>
+            <li>
+                You can see the passwords you saved earlier.<br>Go to menu ->click show passwords
+            </li><br>
+            <strong>Step-4: Managing passwords</strong><br>
+            <li>
+                You can manage your password by clicking the buttons beside your details.you can
+                <ul>
+                    <li>Copy the password</li>
+                    <li>Edit the password<span style="color:red;font-size: 15px">Currently not available!</span></li>
+                    <li>Delete details</li>
+                </ul>
+            </li>
+            <br><br>
+        </div>
+    </div>
+</body>
+</html>
